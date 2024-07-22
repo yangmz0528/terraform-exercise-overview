@@ -1,0 +1,5 @@
+# For illustration/example
+
+bucket = "mingzi-terraform-remote-backend"
+key = "prod/state.tfstate" 
+region = "ap-southeast-1"
