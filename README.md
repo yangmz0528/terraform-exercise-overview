@@ -25,7 +25,7 @@ There are multiple types of backends, which can be place into three categories:
 - Terraform Cloud: the state file is stored in Terraform Cloud
 - 3rd-party remote backends: the state file is stored in a remote backend different from Terraform Cloud (e.g. S3, Google Cloud Storage, Azure Resource Manager/Blob Storage, among others)
 
-# Useful Commands
+## Useful Commands
 ```sh
 terraform init -backend-config="dev.s3.tfbackend" -migrate-state
 ```
