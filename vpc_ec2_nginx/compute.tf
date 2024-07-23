@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  ami                         = "ami-0ee022cdf4828fb72"
+  ami                         = "ami-0ee022cdf4828fb72" # search for nginx ami in console
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public.id
@@ -13,6 +13,11 @@ resource "aws_instance" "web" {
   tags = merge(local.common_tags, {
     Name = "tf-aws-resources-ec2"
   })
+
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes = [ tags ] # ignore the changes made on console which is different from what is specified here
+  }
 }
 
 resource "aws_security_group" "public_http_traffic" {
