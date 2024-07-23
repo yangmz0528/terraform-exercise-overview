@@ -25,6 +25,15 @@ There are multiple types of backends, which can be place into three categories:
 - Terraform Cloud: the state file is stored in Terraform Cloud
 - 3rd-party remote backends: the state file is stored in a remote backend different from Terraform Cloud (e.g. S3, Google Cloud Storage, Azure Resource Manager/Blob Storage, among others)
 
+## Meta-Arguments
+- `depends_on`: used to explicitly define dependencies between resources
+- `count` and `for_each`: allow the creation of multiple resources of the same time without having to declare separate resource blocks
+- `provider`: allows defining explicitly which provider to use with a specific resource
+- `lifecycle`
+    - `create_before_destroy`: prevents tf's default behaviour of destroying before creating resources that cannot be updated in-place. The behaviour is propakgated to all resource's dependencies
+    - `prevent_destroy`: tf exits with an error if the planned changes would lead to the destruction of the resource marked with this
+    - `replace_triggered_by`: replace the reousrce when any of the referenced item change
+    - `ignore_changes`: we can provide a list of attributes that should not trigger an update when modified outside tf
 ## Useful Commands
 ```sh
 terraform init -backend-config="dev.s3.tfbackend" -migrate-state
