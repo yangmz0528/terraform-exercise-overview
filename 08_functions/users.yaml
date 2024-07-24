@@ -1,0 +1,5 @@
+users:
+ - name: xiao ming
+   group: developers
+ - name: John
+   group: auditors
