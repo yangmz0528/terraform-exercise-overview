@@ -1,4 +1,5 @@
 locals {
+  project       = "variable-local-output-tf-execise"
   project_owner = "terraform-course"
   cost_center   = "1234"
   managed_by    = "terraform"
