@@ -1,6 +1,5 @@
 variable "ec2_instance_type" {
   type        = string
-  default     = "t2.micro"
   description = "size of managed EC2 instances"
 
   # Restrictions
@@ -24,7 +23,7 @@ variable "ec2_volume_config" {
 }
 
 variable "additional_tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 
