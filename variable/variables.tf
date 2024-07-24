@@ -4,7 +4,9 @@ variable "ec2_instance_type" {
 
   # Restrictions
   validation {
-    condition     = contains(["t2.micro", "t3.micro"], var.ec2_instance_type) # var.ec2_instance_type == "t2.micro" || var.ec2_instance_type == "t3.micro"
+    condition     = contains(["t2.micro", "t3.micro"], var.ec2_instance_type) 
+    # var.ec2_instance_type == "t2.micro" || var.ec2_instance_type == "t3.micro"
+    # startswith(var.ec2_instance_type, "t3") # support only t3 family
     error_message = "only support t2.micro and t3.micro"
   }
 }
