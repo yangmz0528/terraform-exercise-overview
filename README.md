@@ -43,5 +43,5 @@ migrate state is needed if your original state file is not in the location state
 ```sh
 terraform plan -var-file="dev.terraform.tfvars"
 ```
-let's say if you have different tfvars file for different environment (dev and prod) and you named it differently, terraform plan will not pick this file up unless specified.
+let's say if you have different tfvars file for different environment (dev and prod) and you named it differently from `terraform.tfvars`, terraform plan will not pick this file up unless specified.
 
