@@ -45,3 +45,5 @@ terraform plan -var-file="dev.terraform.tfvars"
 ```
 let's say if you have different tfvars file for different environment (dev and prod) and you named it differently from `terraform.tfvars`, terraform plan will not pick this file up unless specified.
 
+If you have another file named `xxx.auto.tfvars`, `then auto.tfvars` file will have higher precedence over `terraform.tfvars` file.
+
