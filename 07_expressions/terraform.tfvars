@@ -8,11 +8,28 @@ numbers_map = {
   five  = 5
 }
 
-objects_list = [{
-  firstname = "John"
-  lastname  = "Smith"
+objects_list = [
+  {
+    firstname = "John"
+    lastname  = "Smith"
   },
   {
     firstname = "Jane"
     lastname  = "Smith"
 }]
+
+users = [
+  {
+    role     = "admin"
+    username = "John"
+  },
+  {
+    role     = "developer"
+    username = "Jane"
+  },
+  {
+    role     = "auditor"
+    username = "Jane"
+}]
+
+user_to_output = "Jane"
