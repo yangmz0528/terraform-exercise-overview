@@ -47,3 +47,8 @@ let's say if you have different tfvars file for different environment (dev and p
 
 If you have another file named `xxx.auto.tfvars`, `then auto.tfvars` file will have higher precedence over `terraform.tfvars` file.
 
+
+```sh
+terraform plan | grep instance_type
+```
+useful to just fetch certain information from terraform plan 
