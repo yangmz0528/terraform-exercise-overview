@@ -7,7 +7,7 @@ locals {
       roles : roles
   } }
 
-  usernames_from_map = [ for username, roles in local.users_map: username]
+  usernames_from_map = [for username, roles in local.users_map : username]
 }
 
 output "users_map" {
