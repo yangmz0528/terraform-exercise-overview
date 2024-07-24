@@ -27,8 +27,12 @@ data "aws_iam_policy_document" "static_website" {
 
     actions = ["s3:GetObject"]
 
+    resources = ["${aws_s3_bucket.pulic_read_bucket.arn}/*"]
+
   }
 }
+
+
 
 # VPC (vpc that is managed on the console, not created by terraform)
 data "aws_vpc" "prod_vpc" {
