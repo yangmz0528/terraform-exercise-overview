@@ -40,3 +40,8 @@ terraform init -backend-config="dev.s3.tfbackend" -migrate-state
 ```
 migrate state is needed if your original state file is not in the location stated in tfbackend. This will copy the state file over to the location specified in tfbackend file, but will not delete state file in the original location, will need to go to the console to delete.
 
+```sh
+terraform plan -var-file="dev.terraform.tfvars"
+```
+let's say if you have different tfvars file for different environment (dev and prod) and you named it differently, terraform plan will not pick this file up unless specified.
+
