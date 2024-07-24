@@ -17,3 +17,8 @@ output "aws_region" {
 output "prod_vpc_id" {
   value = data.aws_vpc.prod_vpc.id
 }
+
+# availability zone
+output "azs" {
+  value = data.aws_availability_zones.available[*].id
+}

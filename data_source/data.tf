@@ -29,3 +29,8 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {
     # input provider = provider_alias if want to reference to other region
 }
+
+# AWS availability zones
+data "aws_availability_zones" "available" {
+  state = "available"
+}
