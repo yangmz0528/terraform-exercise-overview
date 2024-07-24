@@ -34,7 +34,7 @@ There are multiple types of backends, which can be place into three categories:
     - `prevent_destroy`: tf exits with an error if the planned changes would lead to the destruction of the resource marked with this
     - `replace_triggered_by`: replace the reousrce when any of the referenced item change
     - `ignore_changes`: we can provide a list of attributes that should not trigger an update when modified outside tf
-    
+
 ## Useful Commands
 ```sh
 terraform init -backend-config="dev.s3.tfbackend" -migrate-state
@@ -53,3 +53,12 @@ If you have another file named `xxx.auto.tfvars`, `then auto.tfvars` file will h
 terraform plan | grep instance_type
 ```
 useful to just fetch certain information from terraform plan 
+
+```sh
+terraform output -help
+# e.g.
+terraform output -json 
+terraform output s3_bucket_name
+terraform output -raw s3_bucket_name # output return without double quotations
+```
+reads an output variable from a Terraform state file and prints the value.
