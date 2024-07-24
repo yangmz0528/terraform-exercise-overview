@@ -11,3 +11,6 @@ resource "aws_instance" "web" {
   }
 }
 
+resource "aws_s3_bucket" "pulic_read_bucket" {
+  bucket = "my-public-read-bucket"
+}

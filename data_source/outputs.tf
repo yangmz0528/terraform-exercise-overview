@@ -22,3 +22,8 @@ output "prod_vpc_id" {
 output "azs" {
   value = data.aws_availability_zones.available[*].id
 }
+
+# IAM
+output "iam_policy" {
+  value = data.aws_iam_policy_document.static_website.json
+}
