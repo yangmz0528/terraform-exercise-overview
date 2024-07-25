@@ -1,5 +1,8 @@
 locals {
   users_from_yaml = yamldecode(file("${path.module}/user-roles.yaml")).users
+  users_map = {
+    for user_config in local.users_from_yaml : user_config.username => user_config.roles...
+  }
 }
 
 # Create IAM user
@@ -29,5 +32,5 @@ output "users" {
 }
 
 output "passwords" {
-  value = {for user, user_login in aws_aws_iam_user_login_profile.users : user => user_login.password}
+  value = { for user, user_login in aws_iam_user_login_profile.users : user => user_login.password }
 }
