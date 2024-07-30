@@ -52,6 +52,11 @@ Best Practices:
 
 ## Useful Commands
 ```sh
+terraform fmt -recursive
+```
+also process files in subdirectories, by default only the given directory (current directory) is processed.
+
+```sh
 terraform init -backend-config="dev.s3.tfbackend" -migrate-state
 ```
 migrate state is needed if your original state file is not in the location stated in tfbackend. This will copy the state file over to the location specified in tfbackend file, but will not delete state file in the original location, will need to go to the console to delete.
