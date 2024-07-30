@@ -35,6 +35,21 @@ There are multiple types of backends, which can be place into three categories:
     - `replace_triggered_by`: replace the reousrce when any of the referenced item change
     - `ignore_changes`: we can provide a list of attributes that should not trigger an update when modified outside tf
 
+## Building Modules
+Best Practices:
+- Use object attributes: group related information under object-type variables
+- Separate long-lived from short-lived infrastructure: resources that change rarely should not be grouped together with resources that change often
+- Do not try to cover every edge case: this can quickly lead to highly complex modules, which are difficult to maintain and configure. Modules should be reusable blocks of infrastructure, and catering to edge cases goes against that purpose.
+- Support only the necessary configuration variables: do not expose all the internals of the module for the configuration via variables. This hurts encapsulation and makes the module harder to work with.
+- Ouput as much information as possible: even if there is no clear use for some information, providing it as an output will make the module easier to use in future scenarios.
+- Define a stable input and output interface: All used variables and outputs create coupling to the module. The more coupling, the harder it is to change the interface without breaking changes. 
+- Extensively document variables and outputs: this help the modules's users to quickly understand the module's interface and to work more effectively with it
+- Favor a flat and composable module structure instead of deeply nested modules: deeply nested modules become harder to maintain over time and increase the configuration complexity for the module's users.
+- Make assumptions and guarantees explicit via custom conditions: do not rely on the users always passing valid input values. Thoroughly validate the infrastructure created by the module to ensure it complies with the requirements the module must fulfill.
+- Make a module's dependencies explicit via input variables: data sources can be used to retrieve information a module needs, but they create implicit dependencies, which are much harder to identify and understand. Opt for making these dependencies explicit by requiring the information via input variables.
+- Keep a module's scope narrow: do not try to do everything inside a single module.
+
+
 ## Useful Commands
 ```sh
 terraform init -backend-config="dev.s3.tfbackend" -migrate-state
