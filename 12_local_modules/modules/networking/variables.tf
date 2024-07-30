@@ -22,3 +22,17 @@ variable "vpc_config" {
     error_message = "The cidr_block config option must contain a valid CIDR block."
   }
 }
+
+variable "subnet_config" {
+  type = map(object({ # use map here to allow users to create multiple subnets
+    cidr_block = string
+    az         = string
+  }))
+
+  validation {
+    condition = alltrue([
+      for config in values(var.subnet_config) : can(cidrnetmask(config.cidr_block))
+    ])
+    error_message = "The cidr_block config option must contain a valid CIDR block."
+  }
+}
