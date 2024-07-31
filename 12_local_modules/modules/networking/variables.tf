@@ -26,6 +26,7 @@ variable "vpc_config" {
 variable "subnet_config" {
   type = map(object({ # use map here to allow users to create multiple subnets
     cidr_block = string
+    public     = optional(bool, false)
     az         = string
   }))
 
