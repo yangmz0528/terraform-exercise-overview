@@ -25,6 +25,7 @@ resource "aws_instance" "web" {
   subnet_id     = aws_subnet.this.id
 
   lifecycle {
+    create_before_destroy = true # default is `destroy before create`, this will prevent terraform from destroying the instance even though postcondition fails at the apply phase
     precondition {
       condition     = contains(local.allowed_instance_types, var.instance_type)
       error_message = "Var invalid instance type"
