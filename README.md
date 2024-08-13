@@ -49,6 +49,16 @@ Best Practices:
 - Make a module's dependencies explicit via input variables: data sources can be used to retrieve information a module needs, but they create implicit dependencies, which are much harder to identify and understand. Opt for making these dependencies explicit by requiring the information via input variables.
 - Keep a module's scope narrow: do not try to do everything inside a single module.
 
+## Publishing Modules
+Make your Terraform module available to others via Terraform Registry
+- For public registry, the module must be on Github and must be a public repository.
+  - repositories must use a naming format: `terraform-<PROVIDER>-<NAME>`, where `PROVIDER` is the provider where resources are created, and `NAME` is the type of infrastructure managed by the module.
+  - the module should adhere to the standard module structure (main.tf, outputs.tf, variables.tf). The registry uses this information to inspect the module and generate documentation.
+  - use `x.y.z` (x - major, y - minor, z - patch) tags for releases. The registry uses these tags to identify module versions. Release tag names must be a semantic version, and can be optionally prefixed with a "v".
+  ```sh
+  git tag "v0.1.0"
+  git push --tags
+  ```
 
 ## Useful Commands
 ```sh
