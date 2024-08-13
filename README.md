@@ -60,6 +60,11 @@ Make your Terraform module available to others via Terraform Registry
   git push --tags
   ```
 
+## Object Validation
+- Preconditions: defined within the lifecycle block of a resource/data block and cannot reference the resource itself, can be used to check the validity of data blocks or variables that the resource references.
+- Postconditions: also defined withint the lifecycle block of a resource/data block, can reference the resource itself, can be used to check the validity of the resource configurations.
+- check assertions: block on their own a.k.a used from outside resources and data blocks, can reference information from across the current terraform project, results only in a warning and does not stop the apply process.
+
 ## Useful Commands
 ```sh
 terraform fmt -recursive
