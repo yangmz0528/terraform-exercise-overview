@@ -26,7 +26,8 @@ resource "aws_subnet" "this" {
   cidr_block        = each.value.cidr_block
 
   tags = {
-    Name = each.key # subnet_1, subnet_2 for each
+    Name   = each.key                                 # subnet_1, subnet_2 for each
+    Access = each.value.public ? "Public" : "Private" # which tag to use for access based on the subnet configuration (private/public)
   }
 
   lifecycle {
