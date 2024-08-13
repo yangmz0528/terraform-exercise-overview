@@ -19,10 +19,11 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "this" {
+  count         = 2
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  subnet_id     = aws_subnet.this.id
+  subnet_id     = aws_subnet.this[0].id
 
   lifecycle {
     create_before_destroy = true # default is `destroy before create`, this will prevent terraform from destroying the instance even though postcondition fails at the apply phase
@@ -41,5 +42,21 @@ resource "aws_instance" "web" {
     delete_on_termination = true
     volume_size           = 10
     volume_type           = "gp3"
+  }
+}
+
+check "cost_center_check" {
+  assert {
+    condition     = can(aws_instance.this.tags.CostCenter != "")
+    error_message = "Your AWS Instance does not have a ConstCenter tag."
+  }
+}
+
+check "high_availability_check" {
+  assert {
+    condition     = length(toset([for subnet in aws_subnet.this : subnet.availability_zone])) > 1
+    error_message = <<-EOT
+    You are deploying subnets within the same AZ. Please consider distributing them across AZs for higher availability.
+    EOT
   }
 }
